@@ -12,22 +12,22 @@ public class Student {
 
     private String firstName;
 
-    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Book> bookId;
 
-    public Student() {
 
+    public Student() {
     }
 
     public Student(String name) {
         firstName = name;
     }
 
-    public List<Book> getBook_id() {
+    public List<Book> getBook() {
         return bookId;
     }
 
-    public void setBook_id(List<Book> bookId) {
+    public void setBook(List<Book> bookId) {
         this.bookId = bookId;
     }
 

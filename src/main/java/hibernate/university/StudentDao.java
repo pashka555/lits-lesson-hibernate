@@ -1,15 +1,21 @@
 package hibernate.university;
 
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
-import javax.persistence.Query;
-
+@Repository
 public class StudentDao {
 
-    public static void saveStudent(Student student) {
+    @Autowired
+    private SessionFactory sessionFactory;
+
+    public void saveStudent(Student student) {
         Transaction ts = null;
-        try (Session session = HibernateUtils.getSessionFactory().openSession()) {
+        HibernateUtils hu = new HibernateUtils();
+        try (Session session = hu.getSessionFactory().openSession()) {
             ts = session.getTransaction();
 
             session.save(student);
@@ -21,7 +27,7 @@ public class StudentDao {
         }
     }
 
-    public static void updateStudent(int id, String newName) {
+    /*public static void updateStudent(int id, String newName) {
         Transaction ts = null;
         try (Session session = HibernateUtils.getSessionFactory().openSession()) {
             ts = session.getTransaction();
@@ -60,5 +66,5 @@ public class StudentDao {
             if (ts != null)
                 ts.rollback();
         }
-    }
+    }*/
 }

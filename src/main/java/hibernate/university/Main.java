@@ -16,15 +16,19 @@ public class Main {
         Book lessBoring = new Book();
         lessBoring.setName("ALL ALL ALL About Java");
 
-        first.setBook_id(Arrays.asList(boring));
+        first.setBook(Arrays.asList(boring));
+
+
 
         Student second = new Student();
 
-        second.setBook_id(Arrays.asList(boring,lessBoring));
+        second.setBook(Arrays.asList(boring,lessBoring));
 
         second.setFirstName("Bodyo");
 
-        StudentDao.saveStudent(first);
+        StudentDao sdao = new StudentDao();
+
+        sdao.saveStudent(first);
         //StudentDao.saveStudent(second);
 
         //StudentDao.updateStudent(2,"Bogdan");

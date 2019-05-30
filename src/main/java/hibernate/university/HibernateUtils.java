@@ -5,15 +5,18 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 
 import java.util.Properties;
 
+@org.springframework.context.annotation.Configuration
+@ComponentScan("hibernate.university")
 public class HibernateUtils {
 
-    private static SessionFactory sessionFactory;
-
-    public static SessionFactory getSessionFactory() {
-        if (sessionFactory == null) {
+    @Bean
+    public SessionFactory getSessionFactory() {
+        SessionFactory sessionFactory = null;
             try {
                 Configuration configuration = new Configuration();
 
@@ -29,14 +32,13 @@ public class HibernateUtils {
                 configuration.setProperties(settings);
                 configuration.addAnnotatedClass(Student.class);
                 configuration.addAnnotatedClass(Book.class);
-
                 ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                         .applySettings(configuration.getProperties()).build();
                 sessionFactory = configuration.buildSessionFactory(serviceRegistry);
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
+
         return sessionFactory;
     }
 

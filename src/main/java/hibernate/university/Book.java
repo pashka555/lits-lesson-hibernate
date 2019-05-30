@@ -7,13 +7,17 @@ import javax.persistence.*;
 public class Book {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     private String name;
 
     public Book() {
     }
+
+    @ManyToOne
+    @JoinColumn(name = "student_id")
+    private Student student;
 
     public Integer getId() {
         return id;
@@ -38,10 +42,4 @@ public class Book {
     public void setStudent(Student student) {
         this.student = student;
     }
-
-
-
-    @ManyToOne
-    @JoinColumn(name = "student_id")
-    private Student student;
 }
