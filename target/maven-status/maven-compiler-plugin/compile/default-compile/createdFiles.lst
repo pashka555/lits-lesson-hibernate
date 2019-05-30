@@ -1,0 +1,4 @@
+hibernate/university/Main.class
+hibernate/university/Student.class
+hibernate/university/HibernateUtils.class
+hibernate/university/StudentDao.class
